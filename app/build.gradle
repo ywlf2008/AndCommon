@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.yw.andcommon"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
+    daoPackage 'com.yw.andcommon.data.dao'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    testImplementation rootProject.ext.dependencies["junit"]
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation rootProject.ext.dependencies["rxjava"]
+    implementation rootProject.ext.dependencies["rxandroid"]
+
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter"]
+    implementation rootProject.ext.dependencies["retrofit-adapter"]
+
+    implementation rootProject.ext.dependencies["okhttp"]
+    implementation rootProject.ext.dependencies["okhttp-logger"]
+
+    implementation rootProject.ext.dependencies["gson"]
+    implementation rootProject.ext.dependencies["greendao"]
+
+    implementation rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+
+    implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    implementation rootProject.ext.dependencies["fragmentation"]
+    implementation rootProject.ext.dependencies["fragmentation-swipeback"]
+
+    implementation rootProject.ext.dependencies["smartrefreshlayout"]
+    implementation rootProject.ext.dependencies["smartrefreshheader"]
+    implementation rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
+
+    implementation rootProject.ext.dependencies["dagger"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    implementation rootProject.ext.dependencies["annotation"]
+    implementation rootProject.ext.dependencies["logger"]
+    implementation rootProject.ext.dependencies["bugly"]
+
+    debugImplementation rootProject.ext.dependencies["leakcanary-debug"]
+    releaseImplementation rootProject.ext.dependencies["leakcanary-release"]
+    testImplementation rootProject.ext.dependencies["leakcanary-test"]
+
+    implementation rootProject.ext.dependencies["multidex"]
+    implementation rootProject.ext.dependencies["lottie"]
+
+//    implementation rootProject.ext.dependencies["easyandroid"]
+    implementation rootProject.ext.dependencies["rxtools"]
+}
